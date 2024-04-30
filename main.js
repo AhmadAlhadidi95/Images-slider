@@ -14,7 +14,7 @@ function changeImage(number) {
 
     images[currentImages].classList.remove("active")
 
-    currentImages = (number + images.length) % images.length // (1 + 5) % 6 [Value-> 0]
+    currentImages = (number + images.length) % images.length // (1 + 7) [Value-> 8] 8 % 7 [Value-> 1]
 
     images[currentImages].classList.add("active")
 
@@ -23,8 +23,8 @@ function changeImage(number) {
 
 }
 
-prevBtn.addEventListener("click", () => {changeImage(currentImages - 1)})
-nextBtn.addEventListener("click", () => {changeImage(currentImages + 1)})
+prevBtn.onclick = () => changeImage(currentImages - 1)
+nextBtn.onclick = () => changeImage(currentImages + 1)
 
 function updateTheImages() {
 
@@ -39,15 +39,15 @@ images.forEach((img, i) => {
 
     let copiesImages = img.cloneNode()
 
-    copiesImages.addEventListener("click", () => {changeImage(i)})
+    copiesImages.onclick = () => changeImage(i)
 
     theGallery.appendChild(copiesImages)
 
 })
 
-function updateTheCopiesImages(i1) {
+function updateTheCopiesImages(currentImage) {
 
-    document.querySelectorAll(".gallery img").forEach((img, i2) => {img.classList.toggle("active", i1 === i2)})
+    document.querySelectorAll(".gallery img").forEach((img, i) => {img.classList.toggle("active", currentImage === i)})
 
 }
 
